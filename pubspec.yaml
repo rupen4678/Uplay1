@@ -38,7 +38,8 @@ dependencies:
   youtube_player_iframe: ^2.2.2
   sliver_tools: ^0.2.5
   path_provider: ^2.0.8
-  easy_pip: ^0.1.0
+  better_player: ^0.0.81
+  
 
 dev_dependencies:
   flutter_test:

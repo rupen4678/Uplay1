@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'dart:ui';
 import 'package:uplay/config/routers.dart';
-import 'package:easy_pip/easy_pip.dart';
 
 class MyPlayerYoutube extends StatefulWidget {
   final String? youtubeURL;
@@ -40,46 +39,34 @@ class _MyPlayerYoutubeState extends State<MyPlayerYoutube> {
         automaticallyImplyLeading: true,
         toolbarHeight: 55,
         toolbarOpacity: 0.5,
+        centerTitle: true,
         title: Container(
-          child: Text('Uplay'),
+          child: const Text(
+            'Uplay',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          color: Colors.white,
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+            size: 27.0,
+          ),
           onPressed: () => Navigator.pop(context, false),
         ),
       ),
-      body: PIPStack(
-        backgroundWidget: Center(
-            child: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              isEnabled = !isEnabled;
-
-              String s = isEnabled ? 'enabled pip' : 'disabled pip';
-              print('running pip');
-              print(s);
-            });
-          },
-          child: Icon(Icons.navigation),
-        )),
-        pipWidget: isEnabled
-            ? SizedBox(
-                height: 250,
-                child: YoutubePlayerControllerProvider(
-                  controller: _controller,
-                  child: YoutubePlayerIFrame(
-                    controller: _controller,
-                  ),
-                ),
-              )
-            : Container(child: const Text('sorry not running the pip')),
-        pipEnabled: isEnabled,
-        pipExpandedContent: Container(child: Text('This area is not in pip ')),
-        onClosed: () {
-          setState(() {
-            isEnabled = !isEnabled;
-          });
-        },
+      body: Container(
+        child: YoutubePlayerControllerProvider(
+          controller: _controller,
+          child: YoutubePlayerIFrame(
+            controller: _controller,
+          ),
+        ),
       ),
     );
   }

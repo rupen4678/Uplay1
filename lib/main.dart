@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_api/youtube_api.dart';
-import 'screens/playvideo.dart';
+//import 'screens/playvideo.dart';
+import 'screens/betterPlayyer.dart';
 import 'config/routers.dart';
 import 'config/keys.dart';
 import 'dart:io';
@@ -91,7 +92,7 @@ class _YouTubeSearchState extends State<YouTubeSearch> {
                     child: IconButton(
                         icon: Image.asset('assets/images/logo.png'),
                         onPressed: () {
-                          AppRouter.push(MyPlayerYoutube(
+                          AppRouter.push(VideoPlayer(
                               'https://www.youtube.com/watch?v=WVVMMPVUUxY&list=RDWVVMMPVUUxY&start_radio=1'));
                         }),
                   ),
@@ -149,7 +150,7 @@ Widget ListItem(YouTubeVideo video) {
       child: GestureDetector(
         onTap: () {
           print('id of the video ${video.url}');
-          AppRouter.push(MyPlayerYoutube(video.url));
+          //Router.push(MyPlayerYoutube(video.url));
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
